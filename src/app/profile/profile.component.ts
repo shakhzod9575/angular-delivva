@@ -118,11 +118,11 @@ export class ProfileComponent implements OnInit {
     };
     console.log(data);
     this.service.saveUserProfile(jsonData).subscribe({
-      next: (data) => {
+      next: (data: any) => {
           alert("Your registration is now complete. Please login to continue!!");
           this.router.navigateByUrl("/login");
       },
-      error: (error) => {
+      error: (error: any) => {
         const status = error.error.status;
         if(status === 400) {
           alert(error.error.message);
@@ -131,11 +131,11 @@ export class ProfileComponent implements OnInit {
     });
     this.service.savePhoto(this.file)
                 .subscribe({
-                  next: (data) => {
+                  next: (data: any) => {
                     localStorage.setItem('photoLink', data.toString());
                     console.log("Photo is successfully uploaded");
                   },
-                  error: (error) => {
+                  error: (error: any) => {
                     alert(error.error.message);
                   }
                 })

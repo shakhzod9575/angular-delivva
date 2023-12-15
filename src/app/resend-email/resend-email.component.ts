@@ -26,7 +26,7 @@ export class ResendEmailComponent {
                   next: () => {
                     this.router.navigateByUrl("/verify");
                   },
-                  error: (error) => {
+                  error: (error: any) => {
                     alert(error.error.message);
                   }
                 })

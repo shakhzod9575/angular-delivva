@@ -16,7 +16,7 @@ export class VerificationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params: { [x: string]: any; }) => {
       const token = params['token'];
       console.log(token);
       this.authService.confirmEmail(token)
@@ -24,7 +24,7 @@ export class VerificationComponent implements OnInit {
                         next: () => {
                           this.router.navigateByUrl("/fill-profile");
                         },
-                        error: (error) => {
+                        error: (error: any) => {
                           const status = error.error.status;
                           if(status === 401) {
                             this.router.navigateByUrl("/resend");

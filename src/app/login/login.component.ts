@@ -74,7 +74,7 @@ export class LoginComponent {
   loginOauth() {
     this.loginService.loginViaOauth()
             .subscribe({
-              next: (data) => {
+              next: (data: any) => {
                 console.log(data);
               }
             })
