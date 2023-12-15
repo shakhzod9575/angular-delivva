@@ -1,5 +1,5 @@
 [build]
-    publish = "dist/angular-no-stanalone-example"
+    publish = "dist/angular-no-stanalone-example/browser"
     command = "ng build --configuration=production"
 [[redirects]]
     from = "/*"
