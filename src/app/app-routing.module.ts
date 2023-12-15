@@ -8,6 +8,12 @@ import { EmailComponent } from './email/email.component';
 import { OsmViewComponent } from './osm-view/osm-view.component';
 import { InternalErrorComponent } from './internal-error/internal-error.component';
 import { ProfileComponent } from './profile/profile.component';
+import { OrderC2Component } from './order-c2/order-c2.component';
+import { OrderCreationComponent } from './order-creation/order-creation.component';
+import { ProfileDataComponent } from './profile-data/profile-data.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { VerificationComponent } from './verification/verification.component';
+import { ResendEmailComponent } from './resend-email/resend-email.component';
 
 const routes: Routes = [
   {
@@ -36,21 +42,45 @@ const routes: Routes = [
     component: EmailComponent
   },
   {
-    path: 'map',
+    path: 'create-order/destination',
     component: OsmViewComponent
+  },
+  {
+    path: 'create-order/date',
+    component: OrderC2Component
   },
   {
     path: 'error',
     component: InternalErrorComponent
   },
   {
-    path: 'profile',
+    path: 'fill-profile',
     component: ProfileComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileDataComponent
+  },
+  {
+    path: 'profile/edit',
+    component: EditProfileComponent
+  },
+  {
+    path: 'confirm',
+    component: VerificationComponent
+  },
+  {
+    path: 'resend',
+    component: ResendEmailComponent
+  },
+  {
+    path: 'create-order',
+    component: OrderCreationComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

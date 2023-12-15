@@ -18,6 +18,19 @@ import { EmailComponent } from './email/email.component';
 import { OsmViewComponent } from './osm-view/osm-view.component';
 import { InternalErrorComponent } from './internal-error/internal-error.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RegistrationService } from './services/register/registration.service';
+import { ProfileService } from './services/profile/profile.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { OrderC2Component } from './order-c2/order-c2.component'
+import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { OrderCreationComponent } from './order-creation/order-creation.component';
+import { ProfileDataComponent } from './profile-data/profile-data.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { VerificationComponent } from './verification/verification.component';
+import { ResendEmailComponent } from './resend-email/resend-email.component';
 
 @NgModule({
   declarations: [
@@ -33,18 +46,31 @@ import { ProfileComponent } from './profile/profile.component';
     EmailComponent,
     OsmViewComponent,
     InternalErrorComponent,
-    ProfileComponent
+    ProfileComponent,
+    OrderC2Component,
+    OrderCreationComponent,
+    ProfileDataComponent,
+    EditProfileComponent,
+    VerificationComponent,
+    ResendEmailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   providers: [
     provideClientHydration(),
     TestService,
+    RegistrationService,
+    ProfileService,
     HttpClient
   ],
   bootstrap: [AppComponent]

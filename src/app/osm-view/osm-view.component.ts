@@ -10,6 +10,7 @@ import { Vector as VectorLayer } from 'ol/layer';
 import { Vector as VectorSource } from 'ol/source';
 import { Style, Icon } from 'ol/style';
 import axios from 'axios';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-osm-view',
@@ -21,6 +22,10 @@ export class OsmViewComponent implements OnInit {
   public searchQueryFrom = '';
   public searchQueryTo = '';
   private count = 0;
+  isFromValid: boolean = false;
+  isToValid: boolean = false;
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.map = new Map({
@@ -90,6 +95,10 @@ addMarker(coordinatesArray: [number, number][]): void {
   }
 }
 
+  checkAll() {
+    return this.isFromValid && this.isToValid;
+  }
+
 
   searchLocation() {
     const nominatimUrlFrom = `https://nominatim.openstreetmap.org/search?q=${this.searchQueryFrom}&format=json`;
@@ -122,16 +131,26 @@ addMarker(coordinatesArray: [number, number][]): void {
                 this.map.getView().fit(extent, { padding: [20, 20, 20, 20], duration: 1000 });
                 
                 this.addMarker([[longitudeFrom, latitudeFrom], [longitudeTo, latitudeTo]]);
+                this.isFromValid = true;
+                this.isToValid = true;
               } else {
                 console.error('Location not found');
+                this.isFromValid = false;
+                this.isToValid = false;
               }
             })
         } else {
           console.error('Location not found');
+          this.isFromValid = false;
+          this.isToValid = false;
         }
       })
       .catch((error) => {
         console.error('Error during geocoding:', error);
       });
+  }
+
+  onSubmit() {
+    this.router.navigateByUrl("/create-order/date");
   }
 }

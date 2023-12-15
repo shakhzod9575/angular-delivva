@@ -20,8 +20,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-user-circle"></i> Admin <span class="caret"></span></a>
                     <ul id="g-account-menu" class="dropdown-menu" role="menu">
-                        <li><a href="#"><i class="fa fa-user-secret"></i> My Profile</a></li>
-                        <li><a href="#"><i class="fa fa-edit"></i> Edit profile</a></li>
+                        <li><a routerLink="/profile-data"><i class="fa fa-user-secret"></i> My Profile</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
@@ -39,15 +38,16 @@
 
     <ul class="nav nav-pills nav-stacked" style="border-right:1px solid black">
         <!--<li class="nav-header"></li>-->
-        <li><a href="#"><i class="fa fa-plus"></i> Create Order</a></li>
+        <li><a routerLink="/create-order"><i class="fa fa-plus"></i> Create Order</a></li>
+        <li><a routerLink="/create-order"><i class="fa fa-plus"></i> Add Car</a></li>
         <li><a href="#"><i class="fa fa-first-order"></i> My Orders</a></li>
+        <li><a href="#"><i class="fa fa-truck"></i> My Deliveries</a></li>
         <li><a href="#"><i class="fa fa-list"></i> Global Order List</a></li>
-        <li><a href="#"><i class="fa fa-history"></i> History</a></li>
+        <li><a href="#"><i class="fa fa-history"></i> Order History</a></li>
+        <li><a href="#"><i class="fa fa-history"></i> Delivery History</a></li>
     </ul>
-</div><!-- /span-3 -->
+</div>
 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
-    <!-- Right -->
-
     <strong><span class="fa fa-dashboard"></span> My Dashboard</strong>
     <hr>
 </div>

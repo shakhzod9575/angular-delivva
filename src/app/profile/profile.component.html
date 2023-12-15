@@ -22,49 +22,83 @@
 <article class="card-body mx-auto" style="max-width: 400px;">
 	<h4 class="card-title mt-3 text-center">Complete registration</h4>
 	<p class="text-center">Fill all required account info</p>
-	<form>
+	<form (ngSubmit)="onSubmit()">
+        <div [formGroup]="firstName">
+            <div class="input-group-prepend" *ngIf="firstName.get('firstName')?.hasError('required') && firstName.get('firstName')?.touched">
+                <span style="color: red;">First name is required</span>
+              </div>
+              <div class="input-group-prepend" *ngIf="firstName.get('firstName')?.hasError('invalidFormat') && firstName.get('firstName')?.touched">
+                <span style="color: red;">Invalid data provided. First name must include only letters</span>
+              </div>
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
              </div>
-                <input name="" class="form-control" placeholder="First name" type="text" required>
+                <input name="firstName" class="form-control" formControlName="firstName" placeholder="First name" type="text" (input)="validateFirstName()">
             </div> <!-- form-group// -->
+            </div>
+            <div [formGroup]="lastName">
+                <div class="input-group-prepend" *ngIf="lastName.get('lastName')?.hasError('required') && lastName.get('lastName')?.touched">
+                    <span style="color: red;">Last name is required</span>
+                  </div>
+                  <div class="input-group-prepend" *ngIf="lastName.get('lastName')?.hasError('invalidFormat') && lastName.get('lastName')?.touched">
+                    <span style="color: red;">Invalid data provided. Last name must include only letters</span>
+                  </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                   <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                </div>
-                  <input name="" class="form-control" placeholder="Last name" type="text" required>
+                  <input name="lastName" class="form-control" formControlName="lastName" placeholder="Last name" type="text" (input)="validateLastName()">
               </div> <!-- form-group// -->
+            </div>
+            <div [formGroup]="phoneNumber">
+                <div class="input-group-prepend" *ngIf="phoneNumber.get('phoneNumber')?.hasError('required') && phoneNumber.get('phoneNumber')?.touched">
+                    <span style="color: red;">Phone number is required</span>
+                  </div>
+                  <div class="input-group-prepend" *ngIf="phoneNumber.get('phoneNumber')?.hasError('pattern') && phoneNumber.get('phoneNumber')?.touched">
+                    <span style="color: red;">Please enter valid phone number</span>
+                  </div>
         <div class="form-group input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
           </div>
-          <select class="custom-select" style="max-width: 120px;">
-              <option selected="">+998</option>
+          <select formControlName="countryCode" class="custom-select" style="max-width: 120px;">
+              <option value="uzb">+998</option>
               <option value="1">+972</option>
               <option value="2">+198</option>
               <option value="3">+701</option>
           </select>
-            <input name="" class="form-control" placeholder="Phone number" type="text" required>
+            <input name="phoneNumber" formControlName="phoneNumber" class="form-control" placeholder="Phone number" type="text" (input)="validatePhoneNumber()">
           </div> <!-- form-group// -->
+        </div>
+        <div [formGroup]="username">
+            <div class="input-group-prepend" *ngIf="username.get('username')?.hasError('required') && username.get('username')?.touched">
+                <span style="color: red;">Username is required</span>
+              </div>
+              <div class="input-group-prepend" *ngIf="username.get('username')?.hasError('invalidFormat') && username.get('username')?.touched">
+                <span style="color: red;">Invalid data provided. Username must include only letters and numbers</span>
+              </div>
       <div class="form-group input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-sign-in"></i> </span>
           </div>
-          <input name="" class="form-control" placeholder="Username" type="text" required>
+          <input name="username" formControlName="username" class="form-control" placeholder="Username" type="text" (input)="validateUsername()">
         </div> <!-- form-group end.// -->
+    </div>
+    <div [formGroup]="photoInput">
         <div class="input-group-prepend">
-            <span style="text-decoration:solid;">Upload photo</span>
+            <span style="text-decoration:solid;">Upload photo (optional)</span>
           </div>
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-image"></i> </span>
              </div>
-             <input type="file" class="form-control" id="exampleFormControlFile1" placeholder="Upload photo" required>
+             <input #photo type="file" (change)="onFileChange($event)" formControlName="photo" class="form-control" id="exampleFormControlFile1" placeholder="Upload photo" required>
             </div> <!-- form-group// -->  
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block"> Submit  </button>
-            </div> <!-- form-group// -->                                  
+                <button type="submit" [disabled]="!checkAllOverCorrectness()" class="btn btn-primary btn-block"> Submit  </button>
+            </div> <!-- form-group// -->   
+        </div>                               
 </form>
 </article>
 </div> <!-- card.// -->

@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { RegistrationData } from '../services/models/registration-data-model';
 import { RegistrationService } from '../services/register/registration.service';
 import { Router } from '@angular/router';
+import { RegistrationResponse } from '../services/models/register-response';
 
 @Component({
   selector: 'app-registration',
@@ -56,11 +57,13 @@ export class RegistrationComponent implements OnInit{
       this.isPasswordValid = true;
       this.registrationService.createUser(registration)
                             .subscribe({
-                              next: (data) => {
-                                console.log(data)
+                              next: (data: RegistrationResponse) => {
+                                console.log(data);
+                                localStorage.setItem('userId', data.id.toString())
+                                localStorage.setItem('userEmail', data.email);
                                 this.router.navigateByUrl("/verify")
                               },
-                              error: (error) => {
+                              error: (error: any) => {
                                 const response = error.error;
                                 const message = response.message;
                                 const status = error.status;
