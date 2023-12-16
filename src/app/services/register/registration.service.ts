@@ -7,7 +7,7 @@ import { RegistrationData } from '../models/registration-data-model';
 })
 export class RegistrationService {
 
-  private registrationUrl: string = 'https://Delivva-testing-environment-env.eba-jighrhr6.us-east-1.elasticbeanstalk.com/api/v1/auth/register';
+  private registrationUrl: string = 'http://Delivva-testing-environment-env.eba-jighrhr6.us-east-1.elasticbeanstalk.com/api/v1/auth/register';
 
   constructor(private http: HttpClient) { }
 
